@@ -1,0 +1,30 @@
+%given a list of numbers & sublist of numbers,,substitute each sublist
+% in which the sum of elements is odd with the first element of the next
+% sublist
+% Ex. [1,2,[2,4],7,7,[4,6,7],[1],8,10,[5,2]]=>[2,4,[2,4],7,3,4,1,8,10,3]
+% 
+% sum(l1...ln)=0,n=0
+%             =l1+sum(l2...ln),otherwise
+%
+%sum(L-list,S-sum)
+%(i,i),(i,o)
+%
+sum([],0).
+sum([H|T],S):-
+    sum(T,S1),
+    S is H+S1.
+
+%sub(l1...ln)=[],n=0
+%            =l11 U sub(l2....ln),n>=1 and l1=l2...ln and sum(l1)%2=1
+%            =l1 U sub(l2...ln),n>=1 and list(l1) and sub(l1)%2=0
+%
+%sub(L-list,R-list)
+%(i,i),(i,o)
+%
+
+sub([],[]).
+sub([H|T],[H|R]):-
+    stmic(H),
+    sub(T,R).
+
+%Given a heter. list of numbers 

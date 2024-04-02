@@ -1,0 +1,46 @@
+%compute the number of occurences of an element e in a list
+%count(l1l2...ln,x)=0,if n=0
+%                  =count(l2...kn,x),n>=1,x=\=l1
+%                  =1+count(l2...ln,x),if n>=1 and x=l1
+%
+%count(l1l2...ln,x,Res)
+%count(i,i,o),count(i,i,i)
+
+count([],_,0).
+count([H|T],X,C):-
+    X\=H,
+    count(T,X,NC),
+    C is NC.
+count([H|T],X,C):-
+    X=H,
+    count(T,X,NC),
+    C is NC+1.
+
+%count(l1l2...ln,e,col)=col,if n=0
+%                      =count(l2l3...ln,e,col),if n>=1 and e=\=l1
+%                      =count(l2l3...ln,e,col+1),if n>=1 and e=l1
+%                      
+%num(l1l2...ln,e)= count(l1l2...ln,e,0)
+%count(list,element,collector,output)
+%flow model (i,i,i,o) or (i,i,i,i)
+
+main(L,Elem,Out):-
+    Col is 0,
+    count(L,Elem,Col,Out).
+count([],_,col,col).
+count([H|T],Elem,Col,Out):-
+    H=:=Elem,!,
+    NewC is Col+1,
+    count(T,Elem,NewC,Out).
+count([H|T],Elem,Col,Out):-
+    count(T,Elem,Col,Out).
+
+% Write a pred. to remove from a list all the elements that appear only
+% once
+% EX[1,2,1,4,1,3,4]=>[1,1,4,1,4]
+% 
+% remove_e(l1l2...ln,p1p2...pm)= [],if n=0
+%           =l1 U remove_e(l2...ln,p1p2...pn),count(p1...pn,l1)>1 and
+ n>=1
+    
+
