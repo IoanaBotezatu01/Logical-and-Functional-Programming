@@ -26,5 +26,3 @@ sub([],[]).
 sub([H|T],[H|R]):-
     stmic(H),
     sub(T,R).
-
-%Given a heter. list of numbers 
