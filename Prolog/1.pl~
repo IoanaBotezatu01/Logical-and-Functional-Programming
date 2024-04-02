@@ -1,7 +1,0 @@
-%mult(l-list,k-number,R-return list)
-%flow model(i,i,o)
-mult([],_,[]).
-mult([H|T],k,R):-
-    mult(T,k,Res2),
-    NewH is H*k,
-    R=[NewH|Res2].
